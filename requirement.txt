@@ -1,3 +1,6 @@
 librosa
 matplotlib
 pandas
+
+soynlp
+git+https://github.com/ssut/py-hanspell.git

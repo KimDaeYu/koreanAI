@@ -1,0 +1,28 @@
+{
+	"Q1": [
+		{
+			"filename": "문제1-1.wav",
+			"duration": 4.02
+		},
+		{
+			"filename": "문제1-2.wav",
+			"duration": 3.3
+		},
+		{
+			"filename": "문제1-3.wav",
+			"duration": 3.876
+		},
+		{
+			"filename": "문제1-4.wav",
+			"duration": 3.36,
+			"THIS": "과학기술정보통신부 주최, 한국지능정보사회진흥원 주관의 2022 한국어 인공지능 경진대회"
+		},
+		{
+			"filename": "문제1-5.wav",
+			"duration": 4.009,
+			"THIS": 2.311
+		}
+	],
+	"Q2": [],
+	"Q3": []
+}
