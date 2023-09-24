@@ -1,0 +1,14 @@
+/hdd/project/koreanAI/2023/data/문제2/task2_01.wav
+/hdd/project/koreanAI/2023/data/문제2/task2_02.wav
+/hdd/project/koreanAI/2023/data/문제2/task2_03.wav
+/hdd/project/koreanAI/2023/data/문제2/task2_04.wav
+/hdd/project/koreanAI/2023/data/문제1/output1.wav
+/hdd/project/koreanAI/2023/data/문제1/output2.wav
+/hdd/project/koreanAI/2023/data/문제1/output3.wav
+/hdd/project/koreanAI/2023/data/문제1/output4.wav
+/hdd/project/koreanAI/2023/data/문제1/output5.wav
+/hdd/project/koreanAI/2023/data/문제1/output6.wav
+/hdd/project/koreanAI/2023/data/문제1/output7.wav
+/hdd/project/koreanAI/2023/data/문제1/output8.wav
+/hdd/project/koreanAI/2023/data/문제1/output9.wav
+/hdd/project/koreanAI/2023/data/문제1/output10.wav

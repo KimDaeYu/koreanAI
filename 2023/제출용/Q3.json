@@ -1,0 +1,64 @@
+{
+  "/hdd/project/koreanAI/2023/data/\ubb38\uc81c3/task3_01.pcm": [
+    {
+      "beg": 2.5,
+      "end": 7.475
+    }
+  ],
+  "/hdd/project/koreanAI/2023/data/\ubb38\uc81c3/task3_02.pcm": [
+    {
+      "beg": 6.906,
+      "end": 11.381
+    }
+  ],
+  "/hdd/project/koreanAI/2023/data/\ubb38\uc81c3/task3_03.pcm": [
+    {
+      "beg": 2.881,
+      "end": 7.193
+    }
+  ],
+  "/hdd/project/koreanAI/2023/data/\ubb38\uc81c3/task3_04.pcm": [
+    {
+      "beg": 3.681,
+      "end": 8.731
+    }
+  ],
+  "/hdd/project/koreanAI/2023/data/\ubb38\uc81c3/task3_05.pcm": [
+    {
+      "beg": 1.437,
+      "end": 5.581
+    },
+    {
+      "beg": 7.7,
+      "end": 11.993
+    },
+    {
+      "beg": 17.787,
+      "end": 22.493
+    },
+    {
+      "beg": 29.612,
+      "end": 33.806
+    },
+    {
+      "beg": 36.875,
+      "end": 41.187
+    },
+    {
+      "beg": 49.656,
+      "end": 53.906
+    },
+    {
+      "beg": 62.856,
+      "end": 68.068
+    },
+    {
+      "beg": 72.212,
+      "end": 77.062
+    },
+    {
+      "beg": 78.95,
+      "end": 83.168
+    }
+  ]
+}

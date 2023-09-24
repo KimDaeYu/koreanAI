@@ -1,36 +1,59 @@
-import sys
-import json
 import wave
+import os
+import json
+import sys
+import struct
 
-def detect_errors(wav_list_file, output_file):
-    error_list = []
+def check_errors(file_path):
+    try:
+        with wave.open(file_path, 'rb') as wf:
+            nframes = wf.getnframes()
+            
+            frames = wf.readframes(nframes)
+            if len(frames)==0:
+                # data 없을때
+                print(f"No data in file {file_path}")
+                return True            
+            max_possible_amplitude = 2 ** (wf.getsampwidth() * 8 - 1)
+            
+            frames = struct.unpack('{}h'.format(wf.getnframes()), frames)
+            frames = list(frames)
+            
+            if max(frames) == 0 and min(frames) == 0: # All data values are zero.
+                print(f"Zero data values for file {file_path}")
+                return True
+            
+            threshold = 0.98
+            max_amplitude = max(frames)
+            min_amplitude = abs(min(frames))
+            if  max_amplitude/max_possible_amplitude > threshold   or min_amplitude/max_possible_amplitude > threshold : # Clipping error.
 
-    with open(wav_list_file, 'r') as file:
-        wav_files = file.read().splitlines()
+                print(f"Clipping error for file {file_path}")
+                return True
+            
+    except Exception as e:
+        # header 없을때
+        print(f"No header {file_path}: {e}")
+        return True
+        
+    return False
 
-    for wav_file in wav_files:
-        try:
-            with wave.open(wav_file, 'rb') as w:
-                if w.getnframes() == 0 or w.getnchannels() == 0 or w.getsampwidth() == 0 or w.getframerate() == 0:
-                    error_list.append(wav_file)
-                else:
-                    frames = w.readframes(w.getnframes())
-                    if min(frames) <= -1 or max(frames) >= 1: # Assuming data is normalized between -1 and +1 for clipping error.
-                        error_list.append(wav_file)
-        except Exception as e:
-            print(f"Error occurred while processing {wav_file}: {str(e)}")
-
-    result = {"error_list": error_list}
-
-    with open(output_file, 'w') as file:
-        json.dump(result, file)
-
-if __name__ == '__main__':
+def main():
     if len(sys.argv) != 3:
         print("Usage: python3 Q2.py <wav_list.txt> <output.json>")
         sys.exit(1)
 
     input_filename = sys.argv[1]
     output_filename = sys.argv[2]
+    
+    with open(input_filename, 'r') as f:
+        file_paths = [line.strip() for line in f]
+    
+    error_list = [fp for fp in file_paths if check_errors(fp)]
+    
+    with open(output_filename, 'w') as f:
+        json.dump({"error_list": error_list}, f,indent=2)
+        
 
-    detect_errors(input_filename, output_filename)
+if __name__ == "__main__":
+    main()
