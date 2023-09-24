@@ -1,52 +1,36 @@
-import wave
-import json
 import sys
+import json
+import wave
 
-def detect_errors(wav_file):
-    errors = []
-    try:
-        with wave.open(wav_file, 'rb') as wf:
-            # 헤더 정보를 읽어오기
-            num_channels = wf.getnchannels()
-            sample_width = wf.getsampwidth()
-            frame_rate = wf.getframerate()
-            num_frames = wf.getnframes()
-
-            # 데이터 값이 없는 경우 검출
-            if num_frames == 0:
-                errors.append("데이터 값이 없는 경우: " + wav_file)
-
-            # 데이터만 있는 경우 검출
-            if num_frames > 0 and (num_channels * sample_width * num_frames) == 0:
-                errors.append("데이터만 있는 경우: " + wav_file)
-    except wave.Error:
-        # 헤더만 있는 경우 검출
-        errors.append("헤더만 있는 경우: " + wav_file)
-    except Exception as e:
-        print("오류 발생:", str(e))
-
-    # 클리핑 에러 검출 (클리핑을 검출하는 추가적인 코드가 필요할 수 있음)
-
-    return errors
-
-def main(input_file, output_file):
+def detect_errors(wav_list_file, output_file):
     error_list = []
-    with open(input_file, 'r') as f:
-        wav_files = f.read().splitlines()
+
+    with open(wav_list_file, 'r') as file:
+        wav_files = file.read().splitlines()
 
     for wav_file in wav_files:
-        errors = detect_errors(wav_file)
-        error_list.extend(errors)
+        try:
+            with wave.open(wav_file, 'rb') as w:
+                if w.getnframes() == 0 or w.getnchannels() == 0 or w.getsampwidth() == 0 or w.getframerate() == 0:
+                    error_list.append(wav_file)
+                else:
+                    frames = w.readframes(w.getnframes())
+                    if min(frames) <= -1 or max(frames) >= 1: # Assuming data is normalized between -1 and +1 for clipping error.
+                        error_list.append(wav_file)
+        except Exception as e:
+            print(f"Error occurred while processing {wav_file}: {str(e)}")
 
     result = {"error_list": error_list}
 
-    with open(output_file, 'w') as f:
-        json.dump(result, f, indent=2)
+    with open(output_file, 'w') as file:
+        json.dump(result, file)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     if len(sys.argv) != 3:
-        print("사용법: python3 Q2.py 입력파일명 출력파일명")
-    else:
-        input_file = sys.argv[1]
-        output_file = sys.argv[2]
-        main(input_file, output_file)
+        print("Usage: python3 Q2.py <wav_list.txt> <output.json>")
+        sys.exit(1)
+
+    input_filename = sys.argv[1]
+    output_filename = sys.argv[2]
+
+    detect_errors(input_filename, output_filename)
