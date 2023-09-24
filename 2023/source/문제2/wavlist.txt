@@ -1,0 +1,5 @@
+../../data/문제2/task2_01.wav
+../../data/문제2/task2_02.wav
+../../data/문제2/task2_03.wav
+../../data/문제2/task2_04.wav
+../../data/문제2/task2_05.wav

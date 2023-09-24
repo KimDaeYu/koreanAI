@@ -1,0 +1,5 @@
+../../data/문제3/task3_01.pcm
+../../data/문제3/task3_02.pcm
+../../data/문제3/task3_03.pcm
+../../data/문제3/task3_04.pcm
+../../data/문제3/task3_05.pcm
