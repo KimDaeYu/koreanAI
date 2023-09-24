@@ -1,5 +1,6 @@
 import wave
 import json
+import sys
 
 def detect_errors(wav_file):
     errors = []
@@ -43,6 +44,9 @@ def main(input_file, output_file):
         json.dump(result, f, indent=2)
 
 if __name__ == "__main__":
-    input_file = 'wav_list.txt'
-    output_file = 'Q2.json'
-    main(input_file, output_file)
+    if len(sys.argv) != 3:
+        print("사용법: python3 Q2.py 입력파일명 출력파일명")
+    else:
+        input_file = sys.argv[1]
+        output_file = sys.argv[2]
+        main(input_file, output_file)
