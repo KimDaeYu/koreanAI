@@ -1,5 +1,0 @@
-/hdd/project/koreanAI/2023/data/문제3/task3_01.pcm
-/hdd/project/koreanAI/2023/data/문제3/task3_02.pcm
-/hdd/project/koreanAI/2023/data/문제3/task3_03.pcm
-/hdd/project/koreanAI/2023/data/문제3/task3_04.pcm
-/hdd/project/koreanAI/2023/data/문제3/task3_05.pcm

@@ -1,5 +1,4 @@
-librosa
-matplotlib
-pandas
+librosa==0.10.0.post2
+numpy
 tqdm
 noisereduce

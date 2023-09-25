@@ -1,3 +1,1 @@
-librosa
-matplotlib
-pandas
+numpy

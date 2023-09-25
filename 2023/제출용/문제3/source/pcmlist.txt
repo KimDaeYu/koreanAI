@@ -1,0 +1,5 @@
+./data/task3_01.pcm
+./data/task3_02.pcm
+./data/task3_03.pcm
+./data/task3_04.pcm
+./data/task3_05.pcm

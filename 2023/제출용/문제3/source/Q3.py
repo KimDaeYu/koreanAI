@@ -5,6 +5,7 @@ import noisereduce as nr
 import librosa
 import math
 from tqdm import tqdm
+import re
 
 def find_silence_intervals(pcm_file):
     with open(pcm_file, 'rb') as opened_pcm_file:
@@ -39,8 +40,7 @@ def find_silence_intervals(pcm_file):
             if speaking==False and silence_start < end:
                 silence_end = end
                 if silence_end - silence_start >= 3.99:
-                    silence_intervals.append({"beg": silence_start, "end": silence_end})
-                    print(silence_intervals)
+                    silence_intervals.append({"beg": round(silence_start,2), "end": round(silence_end,2)})
                 silence_start = None            
             speaking = True
         else:
@@ -56,12 +56,19 @@ def main(input_file, output_file):
     silence_data = {}
     with open(input_file, 'r') as f:
         pcm_files = f.read().splitlines()
+        
     for pcm_file in pcm_files:
         silence_intervals = find_silence_intervals(pcm_file)
-        if silence_intervals:
-            silence_data[pcm_file] = silence_intervals
+        pcm_file = pcm_file.split('/')[-1]
+        silence_data[pcm_file] = silence_intervals
+            
     with open(output_file, 'w') as f:
-        json.dump(silence_data, f, indent=2)
+        s = json.dumps(silence_data,indent=4,ensure_ascii=False)
+        s = re.sub('{\s*"(.*)": (\d+.\d+),\s*"(.*)": (\d+.\d+)\s*}(,?)', r'{"\1":\2, "\3":\4}\5', s)
+        f.write(s)
+
+        
+        
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
