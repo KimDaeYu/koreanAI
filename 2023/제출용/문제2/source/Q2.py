@@ -19,6 +19,7 @@ def check_errors(file_path):
             frames = struct.unpack('{}h'.format(wf.getnframes()), frames)
             frames = list(frames)
             
+            # 지워도 되는지 체크 23 ~ 25
             if max(frames) == 0 and min(frames) == 0: # All data values are zero.
                 print(f"Zero data values for file {file_path}")
                 return True
@@ -26,7 +27,7 @@ def check_errors(file_path):
             threshold = 0.98
             max_amplitude = max(frames)
             min_amplitude = abs(min(frames))
-            if  max_amplitude/max_possible_amplitude > threshold   or min_amplitude/max_possible_amplitude > threshold : # Clipping error.
+            if  max_amplitude/max_possible_amplitude > threshold   or min_amplitude/max_possible_amplitude > threshold : # Clipping 에러
 
                 print(f"Clipping error for file {file_path}")
                 return True
